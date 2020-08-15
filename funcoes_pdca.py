@@ -43,11 +43,36 @@ def ueop(df_ocor):
     res=['07º BPM','23º BPM','60º BPM','63º BPM','19ª CIA PM IND']
 
     df_ocor['UEOP'] = np.select(conds,res,default='other')
+    
+ 
 
     #insere a coluna companhia   
 def cia(df_ocor):
     cia = df_ocor['UNID_REGISTRO_NÍVEL_6'].str.split("/", n = 1, expand = True)
     df_ocor['CIA'] = cia[0]
+    
+#insere a coluna UEOP PELO REGISTRO
+def ueop_cia_registro(row):
+    if row['CIA'] in ('50 CIA PM','107 CIA PM','118 CIA PM','141 CIA PM','7 BPM'):
+        return '7º BPM'
+    
+    elif  row['CIA'] in ('51 CIA PM','53 CIA PM','139 CIA PM','142 CIA PM','240 CIA TM','23 BPM'):
+        return '23º BPM'
+    
+    elif  row['CIA'] in ('279 CIA PM','280 CIA PM','60 BPM','68 CIA TM'):
+        return '60º BPM'
+    
+    elif  row['CIA'] in ('241 CIA PM','289 CIA TM','290 CIA PM','63 BPM'):
+        return '63º BPM'
+    
+    elif  row['CIA'] in ('19 CIA PM IND','SOU-OLHO VIVO'):
+        return '19 CIA PM IND'
+    
+    elif row['CIA'] in ('7 CIA PM IND PE'):
+        return '7ª CIA IND PE'
+    else:
+        return 'DESCONHECIDA'
+
 
 ### UNIVERSO MATERIAIS     
 
@@ -117,6 +142,7 @@ def mat_group(row):
     
     else:
         return 'OUTROS_MATERIAIS'
+
     
 ### UNIVERSO ENVOLVIDOS
     

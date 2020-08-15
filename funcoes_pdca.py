@@ -4,8 +4,8 @@ import numpy as np
 ###FUNÇÕES DE PROCESSAMENTO GERAL
 
 def read_sheets():
-    #dir_dba = r'E:\MEGA\PMMG\MySql\10 - Tbl_dimensao\pdca\tbl_base_PDCA_2020.xls'#Home
-    dir_dba = r'C:\Users\Geo\Documents\MEGAsync\MySql\10 - Tbl_dimensao\pdca\tbl_base_PDCA_2020.xls'#Office
+    dir_dba = r'E:\MEGA\PMMG\MySql\10 - Tbl_dimensao\pdca\tbl_base_PDCA_2020.xls'#Home
+    #dir_dba = r'C:\Users\Geo\Documents\MEGAsync\MySql\10 - Tbl_dimensao\pdca\tbl_base_PDCA_2020.xls'#Office
     df_ocorrencias = pd.read_excel(dir_dba, sheet_name='tbl_ocorrencias')
     df_armas_fgo = pd.read_excel(dir_dba, sheet_name='tbl_armas_fgo')
     df_envolvidos = pd.read_excel(dir_dba, sheet_name='tbl_envolvidos')
@@ -146,4 +146,3 @@ def prisoes(row):
     else:
         return 'DEMAIS ENVOLVIDOS'
 
- teste

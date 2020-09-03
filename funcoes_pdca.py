@@ -4,7 +4,8 @@ import numpy as np
 ###FUNÇÕES DE PROCESSAMENTO GERAL
 
 def read_sheets():
-    dir_dba = r'E:\MEGA\PMMG\MySql\10 - Tbl_dimensao\pdca\tbl_base_PDCA_2020.xls'#Home
+    #dir_dba = r'E:\MEGA\PMMG\MySql\10 - Tbl_dimensao\pdca\tbl_base_PDCA_2020.xls'#Home
+    dir_dba = r'I:\MySql\10 - Tbl_dimensao\pdca\tbl_base_PDCA_2020.xls'#Home
     #dir_dba = r'C:\Users\Geo\Documents\MEGAsync\MySql\10 - Tbl_dimensao\pdca\tbl_base_PDCA_2020.xls'#Office
     df_ocorrencias = pd.read_excel(dir_dba, sheet_name='tbl_ocorrencias')
     df_armas_fgo = pd.read_excel(dir_dba, sheet_name='tbl_armas_fgo')
@@ -19,7 +20,7 @@ def columns():
     for df in [df_ocorrencias,df_armas_fgo,df_envolvidos,df_veiculos,df_materiais,df_infracoes,df_integrantes]:
         df.columns = df.columns.str.replace(' ', '_')
         df.columns = df.columns.str.upper()
-    return df
+    #return df
 
 def index_nreds():
     for df in [df_ocorrencias,df_armas_fgo,df_envolvidos,df_veiculos,df_materiais,df_infracoes,df_integrantes]:
@@ -71,7 +72,7 @@ def ueop_cia_registro(row):
     elif row['CIA'] in ('7 CIA PM IND PE'):
         return '7ª CIA IND PE'
     else:
-        return 'DESCONHECIDA'
+        return row['CIA']#'DESCONHECIDA'
 
 
 ### UNIVERSO MATERIAIS     
